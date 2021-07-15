@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="../../../../layout/custom_preview.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.340625" />
+        <entry key="app/src/main/res/layout/activity_main_content.xml" value="0.22760416666666666" />
+        <entry key="app/src/main/res/layout/app_bar_main.xml" value="0.42857142857142855" />
+        <entry key="app/src/main/res/layout/component_empty_portfolio.xml" value="0.5677083333333334" />
+        <entry key="app/src/main/res/layout/foo.xml" value="0.34010416666666665" />
+        <entry key="app/src/main/res/layout/fragment_account_settings.xml" value="0.478125" />
+        <entry key="app/src/main/res/layout/fragment_preferences.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_stock_overview.xml" value="0.334375" />
+        <entry key="app/src/main/res/layout/fragment_users.xml" value="0.38958333333333334" />
+        <entry key="app/src/main/res/layout/main_activity.xml" value="0.3484375" />
+        <entry key="app/src/main/res/layout/strings.xml" value="0.5677083333333334" />
+        <entry key="app/src/main/res/layout/view_holder_stock.xml" value="0.67" />
+        <entry key="app/src/main/res/layout/view_holder_user.xml" value="0.39010416666666664" />
+        <entry key="app/src/main/res/menu/activity_main_drawer.xml" value="0.3489583333333333" />
+      </map>
+    </option>
+  </component>
+  <component name="EntryPointsManager">
+    <list size="2">
+      <item index="0" class="java.lang.String" itemvalue="com.example.cashappstocks.di.annotations.ViewModelKey" />
+      <item index="1" class="java.lang.String" itemvalue="dagger.Binds" />
+    </list>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

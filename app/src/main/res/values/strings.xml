@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Paging PoC</string>
+    <string name="ok">OK</string>
+    <string name="not_connected_dialog_title">A network connection could not be established.</string>
+    <string name="not_connected_dialog_message">Please make sure your cellular/WiFi connection is working and try again.</string>
+    <string name="oops_dialog_message_retry">We\'re working on getting it fixed. You can reload or try again later!</string>
+    <string name="oops_dialog_title">Oops! Something went wrong!</string>
+    <string name="retry">Retry</string>
+    <string name="refresh">Refresh</string>
+    <string name="posts_fragment_label">Posts</string>
+    <string name="account_settings_fragment_label">Account Settings</string>
+    <string name="account_settings_placeholder_text">The purpose of this fragment is to demonstrate navigation with the JetPack Navigation Component.</string>
+</resources>
