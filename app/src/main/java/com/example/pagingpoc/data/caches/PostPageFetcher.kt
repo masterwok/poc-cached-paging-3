@@ -2,10 +2,11 @@ package com.example.pagingpoc.data.caches
 
 import com.example.pagingpoc.common.paging.Page
 import com.example.pagingpoc.common.paging.PageFetcher
-import com.example.pagingpoc.data.clients.reqres.JsonPlaceholderClient
+import com.example.pagingpoc.data.clients.jsonplaceholder.JsonPlaceholderClient
 import com.example.pagingpoc.data.models.Post
 import com.example.pagingpoc.data.models.from
 import com.example.pagingpoc.features.posts.models.PageKey
+import kotlinx.coroutines.delay
 
 class PostPageFetcher(
     private val jsonPlaceholderClient: JsonPlaceholderClient,
@@ -15,6 +16,8 @@ class PostPageFetcher(
 
     override suspend fun fetchPage(key: Int): Page<Int, Post> {
         val response = jsonPlaceholderClient.getPosts(key, pageSize)
+
+        delay(2000)
 
         return Page(
             key = PageKey(

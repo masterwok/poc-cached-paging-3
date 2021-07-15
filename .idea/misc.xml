@@ -17,6 +17,7 @@
         <entry key="app/src/main/res/layout/strings.xml" value="0.5677083333333334" />
         <entry key="app/src/main/res/layout/view_holder_stock.xml" value="0.67" />
         <entry key="app/src/main/res/layout/view_holder_user.xml" value="0.39010416666666664" />
+        <entry key="app/src/main/res/layout/view_load_state.xml" value="0.1" />
         <entry key="app/src/main/res/menu/activity_main_drawer.xml" value="0.3489583333333333" />
       </map>
     </option>

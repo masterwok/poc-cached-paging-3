@@ -3,7 +3,7 @@ package com.example.pagingpoc.data.repositories.posts
 import com.example.pagingpoc.common.paging.PageFetcher
 import com.example.pagingpoc.common.paging.PagingCache
 import com.example.pagingpoc.data.caches.PostPageFetcher
-import com.example.pagingpoc.data.clients.reqres.JsonPlaceholderClient
+import com.example.pagingpoc.data.clients.jsonplaceholder.JsonPlaceholderClient
 import com.example.pagingpoc.data.models.Post
 import dagger.Module
 import dagger.Provides

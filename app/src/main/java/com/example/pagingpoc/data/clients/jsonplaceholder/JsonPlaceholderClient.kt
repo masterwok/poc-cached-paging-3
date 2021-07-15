@@ -1,6 +1,6 @@
-package com.example.pagingpoc.data.clients.reqres
+package com.example.pagingpoc.data.clients.jsonplaceholder
 
-import com.example.pagingpoc.data.clients.reqres.dtos.PostDto
+import com.example.pagingpoc.data.clients.jsonplaceholder.dtos.PostDto
 import retrofit2.http.GET
 import retrofit2.http.Query
 

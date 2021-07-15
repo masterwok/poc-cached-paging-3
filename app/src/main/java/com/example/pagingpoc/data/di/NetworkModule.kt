@@ -3,7 +3,7 @@ package com.example.pagingpoc.data.di
 import android.content.Context
 import com.example.pagingpoc.common.interceptors.InternetConnectionInterceptor
 import com.example.pagingpoc.common.moshi.adapters.UriAdapter
-import com.example.pagingpoc.data.clients.reqres.JsonPlaceholderClient
+import com.example.pagingpoc.data.clients.jsonplaceholder.JsonPlaceholderClient
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module

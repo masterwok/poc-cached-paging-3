@@ -13,6 +13,7 @@ import com.example.pagingpoc.databinding.ViewHolderPostBinding
 
 
 class PostAdapter : PagingDataAdapter<Post, PostAdapter.ViewHolder>(DIFF_CALLBACK) {
+
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         getItem(position)?.let { user -> holder.configure(user) }
     }

@@ -10,15 +10,15 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
+import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pagingpoc.PagingPocApp
 import com.example.pagingpoc.databinding.FragmentPostsBinding
 import com.example.pagingpoc.features.posts.adapters.PostAdapter
+import com.example.pagingpoc.features.posts.adapters.PostsLoadStateAdapter
 import kotlinx.coroutines.InternalCoroutinesApi
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -29,7 +29,11 @@ class PostsFragment : Fragment() {
 
     private val viewModel: PostsViewModel by activityViewModels { viewModelFactory }
 
-    private val userAdapter = PostAdapter()
+    private val loadStateAdapter = PostsLoadStateAdapter()
+
+    private val userAdapter = PostAdapter().apply {
+        withLoadStateFooter(loadStateAdapter)
+    }
 
     private val binding get() = _binding!!
 
@@ -60,23 +64,6 @@ class PostsFragment : Fragment() {
 
         initRecyclerView()
         observePagingFlow()
-        observeAdapter()
-    }
-
-    @OptIn(InternalCoroutinesApi::class)
-    private fun observeAdapter() = with(binding.swipeRefreshLayout) {
-        lifecycleScope.launchWhenResumed {
-            userAdapter
-                .loadStateFlow
-                .map { it.refresh }
-                .collect {
-                    isRefreshing = when (it) {
-                        is LoadState.Error -> false
-                        is LoadState.NotLoading -> false // !it.endOfPaginationReached
-                        LoadState.Loading -> true
-                    }
-                }
-        }
     }
 
     private fun observePagingFlow() {
@@ -89,7 +76,7 @@ class PostsFragment : Fragment() {
 
     private fun initRecyclerView() {
         binding.recyclerView.apply {
-            adapter = userAdapter
+            adapter = ConcatAdapter(userAdapter, loadStateAdapter)
             layoutManager = LinearLayoutManager(
                 requireContext(),
                 LinearLayoutManager.VERTICAL,

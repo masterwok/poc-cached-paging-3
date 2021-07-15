@@ -1,4 +1,4 @@
-package com.example.pagingpoc.data.clients.reqres.dtos
+package com.example.pagingpoc.data.clients.jsonplaceholder.dtos
 
 data class PostDto(
     val id: Int,

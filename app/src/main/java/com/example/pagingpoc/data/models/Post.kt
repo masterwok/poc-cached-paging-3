@@ -1,6 +1,6 @@
 package com.example.pagingpoc.data.models
 
-import com.example.pagingpoc.data.clients.reqres.dtos.PostDto
+import com.example.pagingpoc.data.clients.jsonplaceholder.dtos.PostDto
 
 data class Post(
     val id: Int,
