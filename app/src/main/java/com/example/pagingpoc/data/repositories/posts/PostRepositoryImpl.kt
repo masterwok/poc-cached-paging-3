@@ -12,8 +12,8 @@ import javax.inject.Named
 
 @OptIn(ExperimentalPagingApi::class)
 class PostRepositoryImpl @Inject constructor(
-    private val postPagingCache: PagingCache<Int, Post, Int>,
-    private val userPageFetcher: PageFetcher<Int, Post>,
+    postPagingCache: PagingCache<Int, Post, Int>,
+    userPageFetcher: PageFetcher<Int, Post>,
     @Named("PAGE_SIZE") private val pageSize: Int,
     @Named("STARTING_PAGE_KEY") private val startingPageKey: Int
 ) : PostRepository {
@@ -24,8 +24,7 @@ class PostRepositoryImpl @Inject constructor(
         remoteMediator = PagingCacheRemoteMediator(
             pagingCache = postPagingCache,
             startingPageKey = startingPageKey,
-            pageFetcher = userPageFetcher,
-            itemIdResolver = Post::id
+            pageFetcher = userPageFetcher
         ),
         pagingSourceFactory = postPagingCache.pagingSourceFactory
     )

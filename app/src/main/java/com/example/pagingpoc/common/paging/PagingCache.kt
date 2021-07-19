@@ -15,6 +15,10 @@ class PagingCache<Key : Any, Item : Any, ItemId : Any>(
 
     fun getPageKeyForItemId(itemId: ItemId): PageKey<Key>? = itemIdToPageKeyMap[itemId]
 
+    fun getPageKeyForItem(
+        item: Item
+    ): PageKey<Key>? = getPageKeyForItemId(itemIdResolver.getId(item))
+
     private fun createPagingSource() = PagingCachePagingSource(
         itemIdResolver,
         itemIdToPageKeyMap.toMap(),

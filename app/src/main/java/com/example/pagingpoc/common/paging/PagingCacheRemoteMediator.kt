@@ -5,13 +5,11 @@ import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType
 import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
-import com.example.pagingpoc.features.posts.models.PageKey
 
 
 @OptIn(ExperimentalPagingApi::class)
 class PagingCacheRemoteMediator<Key : Any, Item : Any, ItemId : Any>(
     private val pageFetcher: PageFetcher<Key, Item>,
-    private val itemIdResolver: ItemIdResolver<Item, ItemId>,
     private val pagingCache: PagingCache<Key, Item, ItemId>,
     private val startingPageKey: Key
 ) : RemoteMediator<Key, Item>() {
@@ -25,7 +23,7 @@ class PagingCacheRemoteMediator<Key : Any, Item : Any, ItemId : Any>(
             LoadType.PREPEND -> return MediatorResult.Success(endOfPaginationReached = true)
             LoadType.APPEND -> state
                 .lastItemOrNull()
-                ?.let { pagingCache.getPageKeyForItemId(itemIdResolver.getId(it)) }
+                ?.let { pagingCache.getPageKeyForItem(it) }
                 ?.nextPageKey
                 ?: return MediatorResult.Success(endOfPaginationReached = true)
         }
