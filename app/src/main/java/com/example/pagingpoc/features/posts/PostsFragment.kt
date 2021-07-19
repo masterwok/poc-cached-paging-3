@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
-import androidx.paging.LoadState
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,7 +16,6 @@ import com.example.pagingpoc.PagingPocApp
 import com.example.pagingpoc.databinding.FragmentPostsBinding
 import com.example.pagingpoc.features.posts.adapters.PostAdapter
 import com.example.pagingpoc.features.posts.adapters.PostsLoadStateAdapter
-import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -64,6 +62,13 @@ class PostsFragment : Fragment() {
 
         initRecyclerView()
         observePagingFlow()
+        subscribeToViewComponents()
+    }
+
+    private fun subscribeToViewComponents() = with(binding) {
+        swipeRefreshLayout.setOnRefreshListener {
+            viewModel.refresh()
+        }
     }
 
     private fun observePagingFlow() {
