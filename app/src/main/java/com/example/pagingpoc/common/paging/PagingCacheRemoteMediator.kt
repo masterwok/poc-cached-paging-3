@@ -69,7 +69,7 @@ class PagingCacheRemoteMediator<Key : Any, Item : Any, ItemId : Any>(
                     "Successful Mediator result, endOfPaginationReached=${result.endOfPaginationReached}"
                 )
             } else if (result is MediatorResult.Error) {
-                Log.d(TAG, "Madiator failed with: ${result.throwable}")
+                Log.d(TAG, "Mediator failed with: ${result.throwable}")
             }
 
         }
