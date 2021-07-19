@@ -17,13 +17,11 @@ class PagingCachePagingSource<Key : Any, Item : Any, ItemId : Any>(
 
     override fun getRefreshKey(
         state: PagingState<Key, Item>
-    ): Key? {
-        return state.anchorPosition?.let { anchorPosition ->
-            val closestItem = state.closestItemToPosition(anchorPosition) ?: return@let startingKey
-            val closestItemId = itemIdResolver.getId(closestItem)
+    ): Key? = state.anchorPosition?.let { anchorPosition ->
+        val closestItem = state.closestItemToPosition(anchorPosition) ?: return@let startingKey
+        val closestItemId = itemIdResolver.getId(closestItem)
 
-            itemIdToPageKeyMap[closestItemId]?.value ?: startingKey
-        }
+        itemIdToPageKeyMap[closestItemId]?.value ?: startingKey
     }
 
     override suspend fun load(params: LoadParams<Key>): LoadResult<Key, Item> = try {
