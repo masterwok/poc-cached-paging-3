@@ -60,8 +60,8 @@ class PagingCacheRemoteMediator<Key : Any, Item : Any, ItemId : Any>(
         }.also { result: MediatorResult ->
             Log.d(TAG, "--------")
             Log.d(TAG, "Mediator request load type: $loadType")
-            Log.d(TAG, "Mediator request state: $state")
-            Log.d(TAG, "Mediator request result: $result")
+//            Log.d(TAG, "Mediator request state: $state")
+//            Log.d(TAG, "Mediator request result: $result")
 
             if (result is MediatorResult.Success) {
                 Log.d(

@@ -12,6 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.pagingpoc.PagingPocApp
 import com.example.pagingpoc.databinding.FragmentPostsBinding
 import com.example.pagingpoc.features.posts.adapters.PostAdapter
@@ -29,7 +30,7 @@ class PostsFragment : Fragment() {
 
     private val loadStateAdapter = PostsLoadStateAdapter()
 
-    private val userAdapter = PostAdapter().apply {
+    private val postAdapter = PostAdapter().apply {
         withLoadStateFooter(loadStateAdapter)
     }
 
@@ -65,23 +66,28 @@ class PostsFragment : Fragment() {
         subscribeToViewComponents()
     }
 
-    private fun subscribeToViewComponents() = with(binding) {
+    private fun subscribeToViewComponents() {
+        subscribeToSwipeRefreshLayout()
+    }
+
+    private fun subscribeToSwipeRefreshLayout() = with(binding) {
         swipeRefreshLayout.setOnRefreshListener {
-            viewModel.refresh()
+            postAdapter.refresh()
+            swipeRefreshLayout.isRefreshing = false
         }
     }
 
     private fun observePagingFlow() {
         lifecycleScope.launch {
             viewModel.postFlow.collectLatest { pagingData ->
-                userAdapter.submitData(pagingData)
+                postAdapter.submitData(pagingData)
             }
         }
     }
 
     private fun initRecyclerView() {
         binding.recyclerView.apply {
-            adapter = ConcatAdapter(userAdapter, loadStateAdapter)
+            adapter = ConcatAdapter(postAdapter, loadStateAdapter)
             layoutManager = LinearLayoutManager(
                 requireContext(),
                 LinearLayoutManager.VERTICAL,

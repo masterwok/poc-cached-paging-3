@@ -16,8 +16,4 @@ class PostsViewModel
         .flow
         .cachedIn(viewModelScope)
 
-    fun refresh() {
-
-    }
-
 }
