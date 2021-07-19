@@ -32,8 +32,8 @@ class PagingCachePagingSource<Key : Any, Item : Any, ItemId : Any>(
         } else {
             LoadResult.Page(
                 data = cache.getValue(pageKey.value),
-                pageKeysIndex[pageKey.previousPageKey]?.value,
-                pageKeysIndex[pageKey.nextPageKey]?.value
+                pageKey.previousPageKey,
+                pageKey.nextPageKey
             )
         }
     } catch (error: Throwable) {
