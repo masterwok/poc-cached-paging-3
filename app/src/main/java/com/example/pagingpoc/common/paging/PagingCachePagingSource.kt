@@ -9,7 +9,7 @@ class PagingCachePagingSource<Key : Any, Item : Any, ItemId : Any>(
     private val itemIdResolver: ItemIdResolver<Item, ItemId>,
     private val itemIdToPageKeyMap: Map<ItemId, PageKey<Key>>,
     private val cache: Map<Key, List<Item>>,
-    private val pageKeysIndex: HashMap<Key, PageKey<Key>>,
+    private val pageKeysIndex: Map<Key, PageKey<Key>>,
     private val startingKey: Key
 ) : PagingSource<Key, Item>() {
 

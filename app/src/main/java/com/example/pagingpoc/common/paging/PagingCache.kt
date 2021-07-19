@@ -13,17 +13,13 @@ class PagingCache<Key : Any, Item : Any, ItemId : Any>(
     private val itemIdToPageKeyMap = HashMap<ItemId, PageKey<Key>>()
     private val keyToPageKeyMap = HashMap<Key, PageKey<Key>>()
 
-    fun getPageKeyForItemId(itemId: ItemId): PageKey<Key>? {
-        return itemIdToPageKeyMap[itemId]
-    }
+    fun getPageKeyForItemId(itemId: ItemId): PageKey<Key>? = itemIdToPageKeyMap[itemId]
 
     private fun createPagingSource() = PagingCachePagingSource(
         itemIdResolver,
         itemIdToPageKeyMap.toMap(),
-        cache.map { (key, value) ->
-            key to value.values.toList()
-        }.toMap(),
-        HashMap(keyToPageKeyMap),
+        cache.map { (key, value) -> key to value.values.toList() }.toMap(),
+        keyToPageKeyMap.toMap(),
         startingKey
     )
 
