@@ -5,7 +5,9 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.pagingpoc.features.posts.models.PageKey
 
-class PagingCachePagingSource<Key : Any, Item : Any>(
+class PagingCachePagingSource<Key : Any, Item : Any, ItemId : Any>(
+    private val itemIdResolver: ItemIdResolver<Item, ItemId>,
+    private val itemIdToPageKeyMap: Map<ItemId, PageKey<Key>>,
     private val cache: Map<Key, List<Item>>,
     private val pageKeysIndex: HashMap<Key, PageKey<Key>>,
     private val startingKey: Key
@@ -15,8 +17,13 @@ class PagingCachePagingSource<Key : Any, Item : Any>(
 
     override fun getRefreshKey(
         state: PagingState<Key, Item>
-    ): Key? = state.anchorPosition?.let { anchorPosition ->
-        state.closestPageToPosition(anchorPosition)?.prevKey ?: startingKey
+    ): Key? {
+        return state.anchorPosition?.let { anchorPosition ->
+            val closestItem = state.closestItemToPosition(anchorPosition) ?: return@let startingKey
+            val closestItemId = itemIdResolver.getId(closestItem)
+
+            itemIdToPageKeyMap[closestItemId]?.value ?: startingKey
+        }
     }
 
     override suspend fun load(params: LoadParams<Key>): LoadResult<Key, Item> = try {
